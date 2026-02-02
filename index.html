@@ -1,82 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Something Special 💖</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Comic Sans MS', cursive;
-      background: linear-gradient(#ffd6e8, #fff);
-      text-align: center;
-      padding: 30px;
-    }
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      max-width: 500px;
-      margin: auto;
-    }
-    button {
-      padding: 12px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 20px;
-      background: #ff4d88;
-      color: white;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background: #ff1a66;
-    }
-    .runaway {
-      position: absolute;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>For My Mutu 💖</title>
+<style>
+body {
+  margin: 0;
+  font-family: cursive;
+  background: linear-gradient(#ffd6e8, #fff);
+  text-align: center;
+}
+
+.page {
+  display: none;
+  padding: 60px 20px;
+}
+
+.page.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 320px;
+  margin: auto;
+}
+
+button {
+  background: #ff5c8a;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+</style>
 </head>
 
 <body>
 
-<div class="box" id="page1">
-  <h1>Hello my cutipieee 🥺💗</h1>
-  <button onclick="nextPage(2)">Tap here mutu</button>
+<!-- Page 1 -->
+<div class="page active">
+  <div class="card">
+    <h2>Hello my cutipieee 🥺💗</h2>
+    <button onclick="nextPage()">Tap here mutu</button>
+  </div>
 </div>
 
-<div class="box" id="page2" style="display:none;">
-  <h2>Akash…</h2>
-  <p>You have no idea how special you are 🥹</p>
-  <button onclick="nextPage(3)">Keep going maya</button>
+<!-- Page 2 -->
+<div class="page">
+  <div class="card">
+    <p>At first only use <b>Akash</b>, remove my mutu.</p>
+    <button onclick="nextPage()">Next</button>
+  </div>
 </div>
 
-<div class="box" id="page3" style="display:none;">
-  <p>
-    Maya,<br><br>
-    Hamro maya ko yo journey ma haso aashu satdai aghi badhda
-    kaile ta etti priya bhais malai patttei bhayena.<br><br>
-    Tapai dekhi ta, senior dekhi something more ani finally bf dekhi mutu
-    it has been a long journey.<br><br>
-    But today I am so proud of you and i am veryyy lucky to have you maya 💖
-  </p>
-  <button onclick="nextPage(4)">Next 💕</button>
+<!-- Page 3 -->
+<div class="page">
+  <div class="card">
+    <p>
+      Maya,<br><br>
+      Hamro maya ko yo journey ma haso aashu satdai aghi badhda kaile ta etti priya bhais malai patttei bhayena.<br><br>
+      Tapai dekhi ta, senior dekhi something more ani finally bf dekhi mutu it has been a long journey.
+      But today I am so proud of you and i am veryyy lucky to have you maya.
+    </p>
+    <button onclick="nextPage()">Next</button>
+  </div>
 </div>
 
-<div class="box" id="page4" style="display:none;">
-  <h2>Hehe aalabuuuuuuu mutuuuuu 😘</h2>
-  <p>Fasis 😏</p>
-  <h3>Aba dekhi you will be my valentine forever ❤️</h3>
-
-  <button onclick="yes()">YES 💘</button>
-  <button class="runaway" onmouseover="move(this)">NO 🙃</button>
-
-  <p id="msg"></p>
+<!-- Page 4 -->
+<div class="page">
+  <div class="card">
+    <p>
+      Hehe aalabuuuuuuu mutuuuuu 😘<br>
+      Fasis<br><br>
+      Aba dekhi you will be my valentine forever ❤️
+    </p>
+    <p><b>Keep going maya 💕</b></p>
+  </div>
 </div>
 
 <script>
-function nextPage(n) {
-  document.querySelectorAll('.box').forEach(b => b.style.display = 'none');
-  document.getElementById('page' + n).style.display = 'block';
-}
+let current = 0;
+const pages = document.querySelectorAll('.page');
 
-fu
+function nextPage() {
+  pages[current].classList.remove('active');
+  current++;
+  if (current < pages.length) {
+    pages[current].classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>
