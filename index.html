@@ -1,99 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>For My Mutu 💖</title>
-<style>
-body {
-  margin: 0;
-  font-family: cursive;
-  background: linear-gradient(#ffd6e8, #fff);
-  text-align: center;
-}
+  <meta charset="UTF-8">
+  <title>For My Mutu 💖</title>
 
-.page {
-  display: none;
-  padding: 60px 20px;
-}
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(#ffd6e8, #ffffff);
+      font-family: Arial, Helvetica, sans-serif; /* NOT cursive */
+    }
 
-.page.active {
-  display: block;
-}
+    .card {
+      background: white;
+      padding: 35px 25px;
+      border-radius: 22px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
 
-.card {
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
-  max-width: 320px;
-  margin: auto;
-}
+    h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
 
-button {
-  background: #ff5c8a;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 25px;
-  font-size: 16px;
-  margin-top: 20px;
-}
-</style>
+    h3 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    button {
+      padding: 14px 26px;
+      border: none;
+      border-radius: 30px;
+      background: #ff5c8a;
+      color: white;
+      font-size: 18px;
+      margin: 12px;
+      cursor: pointer;
+    }
+
+    .btn-area {
+      position: relative;
+      height: 140px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- Page 1 -->
-<div class="page active">
-  <div class="card">
-    <h2>Hello my cutipieee 🥺💗</h2>
-    <button onclick="nextPage()">Tap here mutu</button>
-  </div>
-</div>
-
-<!-- Page 2 -->
-<div class="page">
-  <div class="card">
-    <p>At first only use <b>Akash</b>, remove my mutu.</p>
-    <button onclick="nextPage()">Next</button>
-  </div>
-</div>
-
-<!-- Page 3 -->
-<div class="page">
-  <div class="card">
-    <p>
-      Maya,<br><br>
-      Hamro maya ko yo journey ma haso aashu satdai aghi badhda kaile ta etti priya bhais malai patttei bhayena.<br><br>
-      Tapai dekhi ta, senior dekhi something more ani finally bf dekhi mutu it has been a long journey.
-      But today I am so proud of you and i am veryyy lucky to have you maya.
-    </p>
-    <button onclick="nextPage()">Next</button>
-  </div>
-</div>
-
-<!-- Page 4 -->
-<div class="page">
-  <div class="card">
-    <p>
-      Hehe aalabuuuuuuu mutuuuuu 😘<br>
-      Fasis<br><br>
-      Aba dekhi you will be my valentine forever ❤️
-    </p>
-    <p><b>Keep going maya 💕</b></p>
-  </div>
-</div>
+<div class="card" id="content"></div>
 
 <script>
-let current = 0;
-const pages = document.querySelectorAll('.page');
+let page = 0;
+const content = document.getElementById("content");
 
-function nextPage() {
-  pages[current].classList.remove('active');
-  current++;
-  if (current < pages.length) {
-    pages[current].classList.add('active');
+function render() {
+
+  // PAGE 1
+  if (page === 0) {
+    content.innerHTML = `
+      <h2>Hello my cutipie 💗</h2>
+      <button onclick="next()">Next</button>
+    `;
+  }
+
+  // PAGE 2
+  else if (page === 1) {
+    content.innerHTML = `
+      <p><b>Akash 💗</b><br><br>
+      You slowly became my favourite feeling.<br>
+      My comfort on hard days,<br>
+      my smile on normal days,<br>
+      and the reason my heart feels full 🥺<br><br>
+      There’s more I want to tell you…</p>
+      <button onclick="next()">Next</button>
+    `;
+  }
+
+  // PAGE 3
+  else if (page === 2) {
+    content.innerHTML = `
+      <p><b>Maya,</b><br><br>
+      Hamro maya ko yo journey ma haso aashu satdai aghi badhda kaile ta etti priya bhais malai patttei bhayena.<br><br>
+      Tapai dekhi ta, senior dekhi something more ani finally bf dekhi mutu it has been a long journey.
+      But today I am so proud of you and i am veryyy lucky to have you maya.</p>
+      <button onclick="next()">Next</button>
+    `;
+  }
+
+  // PAGE 4
+  else if (page === 3) {
+    content.innerHTML = `
+      <h3>Mutu, will you be my Valentine? 💖</h3>
+      <div class="btn-area">
+        <button onclick="yes()">Yes</button>
+        <button id="noBtn" onmouseover="runAway()">No</button>
+      </div>
+    `;
+  }
+
+  // PAGE 5
+  else if (page === 4) {
+    content.innerHTML = `
+      <h3>Hehe aalabuuuuuuu mutuuuuu 😘</h3>
+      <p><b>Fasis</b><br><br>
+      Aba dekhi you will be my valentine forever ❤️</p>
+    `;
   }
 }
+
+function next() {
+  page++;
+  render();
+}
+
+function yes() {
+  page = 4;
+  render();
+}
+
+function runAway() {
+  const btn = document.getElementById("noBtn");
+  const area = btn.parentElement;
+
+  const maxX = area.offsetWidth - btn.offsetWidth;
+  const maxY = area.offsetHeight - btn.offsetHeight;
+
+  btn.style.position = "absolute";
+  btn.style.left = Math.random() * maxX + "px";
+  btn.style.top = Math.random() * maxY + "px";
+}
+
+render();
 </script>
 
 </body>
